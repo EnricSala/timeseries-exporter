@@ -41,7 +41,7 @@ public class FilesTimeSeriesSink implements TimeSeriesSink {
 			.doAfterTerminate(() -> close(writer))
 			.subscribe(list -> write(writer, list), 
 			err -> log.error("Error exporting " + serieId, err),
-			() -> log.info("Finished exporting {} to: {}", serieId, filePath));
+			() -> log.info("Exported [{}] to: {}", serieId, filename));
 	}
 
 	private String toFileName(String serieId) {

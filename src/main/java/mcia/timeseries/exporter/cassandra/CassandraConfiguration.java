@@ -24,8 +24,7 @@ public class CassandraConfiguration extends AbstractCassandraConfiguration {
 
 	public static final String PROFILE = "cassandra";
 
-	@Autowired
-	private CassandraSettings settings;
+	private @Autowired CassandraSettings settings;
 
 	@Override
 	protected String getContactPoints() {
@@ -57,7 +56,7 @@ public class CassandraConfiguration extends AbstractCassandraConfiguration {
 
 	@Bean
 	public TimeSeriesSource cassandraTimeSeriesSource(CassandraOperations cassandra, CassandraSettings settings) {
-		log.info("Using a Cassandra TimeSeries repository, with {}", settings);
+		log.info("Using TimeSeriesSource: Cassandra, with {}", settings);
 		return new CassandraTimeSeriesSource(cassandra, settings);
 	}
 

@@ -22,7 +22,7 @@ public class FilesConfiguration {
 
 	@Bean
 	public TimeSeriesSink filesTimeSeriesSink(FilesSettings settings) {
-		log.info("Creating Files TimeSeries sink, with {}", settings);
+		log.info("Using TimeSeriesSink: Files, with {}", settings);
 		File outputDir = new File(settings.getOutputDirectory());
 		Assert.isTrue(outputDir.isDirectory(), "Output directory " + outputDir + " does not exist");
 		return new FilesTimeSeriesSink(outputDir);
