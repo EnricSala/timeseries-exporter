@@ -34,7 +34,7 @@ public class CassandraTimeSeriesSource implements TimeSeriesSource {
 				.doOnNext(s -> log.debug("Running async select: {}", s))
 				.map(cassandra::queryAsynchronously)
 				.flatMap(Observable::from)
-				.flatMapIterable(list -> list)
+				.flatMapIterable(rs -> rs)
 				.map(row -> row.getString(settings.getColumn().getId()));
 	}
 
@@ -51,7 +51,7 @@ public class CassandraTimeSeriesSource implements TimeSeriesSource {
 				.doOnNext(s -> log.debug("Running async select: {}", s))
 				.map(cassandra::queryAsynchronously)
 				.flatMap(Observable::from)
-				.flatMapIterable(list -> list)
+				.flatMapIterable(rs -> rs)
 				.map(this::toTimePoint)
 				.filter(point -> point != null);
 	}
