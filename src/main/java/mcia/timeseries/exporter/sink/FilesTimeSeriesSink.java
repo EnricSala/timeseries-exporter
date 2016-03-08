@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.util.Assert;
 
@@ -76,7 +77,7 @@ public class FilesTimeSeriesSink implements TimeSeriesSink {
 
 	private void write(BufferedWriter writer, TimePoint point) {
 		try {
-			writer.write(String.format("%d,%f\n", point.time, point.value));
+			writer.write(String.format(Locale.ENGLISH, "%d,%f\n", point.time, point.value));
 		} catch (IOException ioe) {
 			throw new RuntimeException("Error writing point", ioe);
 		}
