@@ -61,7 +61,7 @@ public class CassandraTimeSeriesSource implements TimeSeriesSource {
 			double value = Double.parseDouble(row.getString(settings.getColumn().getValue()));
 			long time = row.getDate(settings.getColumn().getTime()).getTime();
 			return new TimePoint(time, value);
-		} catch (NumberFormatException nfe) {
+		} catch (Exception e) {
 			return null;
 		}
 	}
